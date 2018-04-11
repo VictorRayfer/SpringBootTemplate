@@ -40,13 +40,29 @@ public class HelloController {
 			@RequestParam("lastName") String lastName,
 			Model model) {
 		Guest guest = new Guest(firstName, lastName);
-		System.out.println(guest.toString());
-		
+		guest.setVisitDate(new Date());
+		repository.insert(guest);
+		List<Guest> guests = new ArrayList<>();
+		guests = repository.findAll();
+		model.addAttribute("guests", guests);
+		return "guests";
+	}
+	
+	@GetMapping("/guests.do")
+	public String listGuests(@RequestParam(value="filter", required=false) String filter, Model model) {
+		List<Guest> guests = new ArrayList<>();
+		if (filter == null) {
+			guests = repository.findAll();
+		} else {
+			Guest g = new Guest("LISTO PAN", "FERNANDEZ");
+			guests.add(g);
+		}
+		model.addAttribute("guests", guests);
 		return "guests";
 	}
 
 	@GetMapping("/hardcodedDBTest")
-	public String listGuests(Model model) {
+	public String listGuestsPoorly(@RequestParam("firstName") String firstName, Model model) {
 		repository.deleteAll();
 		Guest a = new Guest("Alice", "Smith");
 		Guest b = new Guest("Bob", "Smith");
