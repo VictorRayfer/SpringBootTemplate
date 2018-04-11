@@ -26,13 +26,26 @@ public class HelloController {
 		return "index";
 	}
 
-	@PostMapping("/hello")
-	public String sayHello(@RequestParam("name") String name, Model model) {
-		model.addAttribute("name", name);
+	@PostMapping("/hello.do")
+	public String sayHello(@RequestParam("firstName") String firstName,
+			@RequestParam("lastName") String lastName,
+			Model model) {
+		Guest guest = new Guest(firstName, lastName);
+		model.addAttribute("guest", guest);
 		return "hello";
 	}
+	
+	@PostMapping("/signIn.do")
+	public String addGuest(@RequestParam("firstName") String firstName,
+			@RequestParam("lastName") String lastName,
+			Model model) {
+		Guest guest = new Guest(firstName, lastName);
+		System.out.println(guest.toString());
+		
+		return "guests";
+	}
 
-	@GetMapping("/test")
+	@GetMapping("/hardcodedDBTest")
 	public String listGuests(Model model) {
 		repository.deleteAll();
 		Guest a = new Guest("Alice", "Smith");

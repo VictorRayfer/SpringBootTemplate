@@ -1,16 +1,30 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+	pageEncoding="utf-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Spring Boot</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+<link rel="stylesheet" href="/resources/css/style.css">
+<script type="text/javascript" src="/resources/js/app.js"></script>
+
+<title>¡Bienvenido!</title>
 </head>
 <body>
-  <h1>Spring Boot - MVC web application example</h1>
-  <hr>
-
-  <h2>Your name is ${name}</h2>
-
+	<p>
+		Es un placer haberte conocido, <span class="user">${guest.firstName }
+			${guest.lastName }</span>!
+	</p>
+	<br />
+	<form method="post" action="/signIn.do" class="ninja-form">
+		<input value=${guest.firstName } name="firstName" hidden="hidden">
+		<input value=${guest.lastName } name="lastName" hidden="hidden">
+		Nos encantaría que firmaras nuestro libro de visitas. Si te parece
+		bien, pasa por
+		<input type="submit" value="aquí!" />
+	</form>
+	<footer>
+		<a href="/">HOME</a>
+	</footer>
 </body>
 </html>
