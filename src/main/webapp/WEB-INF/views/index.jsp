@@ -23,7 +23,8 @@
 	<div class="form">
 		<form class="center" action="/hello.do" method="post"
 			onsubmit="return validate()">
-			<h1>Preséntate</h1>
+			<h1>¿Eres nuevo? Preséntate!</h1>
+			<h3>O si ya has estado aquí antes, pulsa <a href="/guests.do">aquí</a> para ver el libro de visitas...</h3>
 			<hr />
 			<p>
 				<label>Nombre: </label><input id="firstName" name="firstName">
